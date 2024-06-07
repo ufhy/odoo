@@ -18,15 +18,19 @@ Long description of module's purpose
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','stock'],
+    'depends': ['base', 'stock', 'mail'],
 
     # always loaded
     'data': [
         'data/data.xml',
+        'data/sequence_data.xml',
         'security/ir.model.access.csv',
         'views/training_views.xml',
+        'views/training_attendee_views.xml',
         'views/session_views.xml',
         'views/partner_views.xml',
+        'wizard/training_wizard_views.xml',
+        'views/menuitem_views.xml',
         # 'views/templates.xml',
     ],
     # only loaded in demonstration mode
@@ -36,4 +40,3 @@ Long description of module's purpose
 
     'application': True,
 }
-

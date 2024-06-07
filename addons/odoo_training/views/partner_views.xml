@@ -1,23 +1,40 @@
 <odoo>
-  <data>
+    <data>
 
-    <!-- Mengcustom View Form Partner -->
-    <record id="instruktur_res_partner_view_form" model="ir.ui.view">
-      <field name="name">instruktur.res.partner.form</field>
-      <field name="model">res.partner</field>
-      <field name="inherit_id" ref="base.view_partner_form"/>
-      <field name="arch" type="xml">
-        <notebook position="inside">
-          <page string="Sessions">
-          <group>
-            <field name="instructor"/>
-          </group>
-          <group string="Daftar Sesi Mengajar" invisible="not instructor">
-            <field name="session_line" nolabel="1" colspan="2"/>
-          </group>
-          </page>
-        </notebook>
-      </field>
-    </record>
-  </data>
+        <!-- Mengcustom View Form Partner -->
+        <record id="instruktur_res_partner_view_form" model="ir.ui.view">
+            <field name="name">instruktur.res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Sessions">
+                        Ï
+                        <group>
+                            <field name="instructor"/>
+                        </group>
+                        <group string="Daftar Sesi Mengajar" invisible="not instructor">
+                            <field name="session_line" nolabel="1" colspan="2"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <!-- Membuat Action/Event Instructor -->
+        <record id="training_instructor_action" model="ir.actions.act_window">
+            <field name="name">Instructor</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('instructor', '=', True)]</field>
+            <field name="context">{'default_instructor': True}</field>
+        </record>
+
+        <!-- Membuat Menu Bar Configuration -->
+<!--        <menuitem id="menu_bar_configuration" name="Configuration" parent="menu_dashboard_training"/>-->
+
+        <!-- Membuat Menu Item Instructor -->
+<!--        <menuitem id="menu_item_training_instructor" name="Instructor" parent="menu_bar_configuration"-->
+<!--                  action="training_instructor_action"/>-->
+    </data>
 </odoo>

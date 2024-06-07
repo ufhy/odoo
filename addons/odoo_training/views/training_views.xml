@@ -1,85 +1,128 @@
 <odoo>
-  <data>
-    <!-- Membuat View Tree/List Course -->
-
-    <record model="ir.ui.view" id="training_course_view_tree">
-      <field name="name">training_course.tree</field>
-      <field name="model">training.course</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="user_id"/>
-          <field name="description"/>
-        </tree>
-      </field>
-    </record>
-
-    <!-- Membuat View Form Course -->
-
-    <record id="training_cource_view_form" model="ir.ui.view">
-      <field name="name">training.course.form</field>
-      <field name="model">training.course</field>
-      <field name="arch" type="xml">
-        <form string="Course Form">
-          <sheet>
-            <group>
-              <field name="name"/>
-              <field name="user_id"/>
-            </group>
-            <notebook>
-              <page string="Sesi">
-                <field name="session_line" mode="tree,kanban" nolabel="1">
-                  <tree string="Sesi" editable="bottom">
-                    <field name="name"/>
-                    <field name="partner_id"/>
-                    <field name="start_date"/>
-                    <field name="duration"/>
-                    <field name="seats"/>
-                  </tree>
-                  <form string='Sesi'>
-                    <group>
-                      <field name="name"/>
-                      <field name="partner_id"/>
-                      <field name="start_date"/>
-                      <field name="duration"/>
-                      <field name="seats"/>
+    <data>
+        <!-- Membuat View Search Course -->
+        <record id="training_course_view_search" model="ir.ui.view">
+            <field name="name">training.course.search</field>
+            <field name="model">training.course</field>
+            <field name="arch" type="xml">
+                <search string="Search Course">
+                    <field name="name" string="Kursus"
+                           filter_domain="['|', ('name', 'ilike', self), ('description', 'ilike', self)]"/>
+                    <field name="user_id"/>
+                    <filter name="my_courses" string="Kursus Saya" domain="[('user_id', '=', uid)]"/>
+                    <group string="Group By">
+                        <filter name="responsible" string="Penanggung Jawab" context="{'group_by': 'user_id'}"/>
                     </group>
-                  </form>
-                </field>
-              </page>
-              <page string="Cendera Mata">
-                <field name="product_ids" nolabel="1"/>
-              </page>
-              <page string="Keterangan">
-                <group>
-                  <field name="description"/>
-                </group>
-              </page>
-            </notebook>
-          </sheet>
-        </form>
-      </field>
-    </record>
+                    <searchpanel>
+                        <field name="level" icon="fa-signal" enable_counters="1"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
 
-    <!-- Membuat Action Course -->
-    <record id="training_course_action" model="ir.actions.act_window">
-      <field name="name">Course</field>
-      <field name="res_model">training.course</field>
-      <field name="view_mode">tree,form</field>
-      <field name="help" type="html">
-        <p name="o_view_nocontent_smiling_face">
-          Buatlah kursus pertamamu ...
-        </p>
-      </field>
-    </record>
+        <!-- Membuat View Tree/List Course -->
 
-    <!-- Membuat Menu Dashboard -->
-    <menuitem id="menu_dashboard_training" name="Training" />
-    
-    <!-- Membuat Menu Bar Training -->
-    <menuitem id="menu_bar_training" name="Training" parent="menu_dashboard_training"/>
-    
-    <!-- Membuat Menu Item Course -->
-    <menuitem id="menu_item_training_course" name="Course" parent="menu_bar_training" action="training_course_action"/>
-  </data>
+        <record model="ir.ui.view" id="training_course_view_tree">
+            <field name="name">training_course.tree</field>
+            <field name="model">training.course</field>
+            <field name="arch" type="xml">
+                <tree string="Course List">
+                    <field name="ref"/>
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="level"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Membuat View Form Course -->
+
+        <record id="training_cource_view_form" model="ir.ui.view">
+            <field name="name">training.course.form</field>
+            <field name="model">training.course</field>
+            <field name="arch" type="xml">
+                <form string="Course Form">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="ref"/>
+                            </h1>
+                        </div>
+                        <group col="2" string="Informasi">
+                            <field name="name"/>
+                            <field name="color"/>
+                            <field name="level" widget="radio"/>
+                        </group>
+                        <group>
+                            <separator string="Koordinator"/>
+                            <field name="user_id"/>
+                            <field name="email"/>
+                        </group>
+                        <group>
+                            <field name="name"/>
+                            <field name="user_id"/>
+                        </group>
+                        <notebook>
+                            <page string="Sesi">
+                                <field name="session_line" mode="tree,kanban" nolabel="1">
+                                    <tree string="Sesi" editable="bottom">
+                                        <field name="name" readonly="state != 'draft'"/>
+                                        <field name="partner_id" readonly="state != 'draft'"/>
+                                        <field name="start_date" readonly="state != 'draft'"/>
+                                        <field name="duration" readonly="state != 'draft'"/>
+                                        <field name="seats" readonly="state != 'draft'"/>
+                                        <field name="state" readonly="1"/>
+                                    </tree>
+                                    <form string='Sesi'>
+                                        <group>
+                                            <field name="name"/>
+                                            <field name="partner_id"/>
+                                            <field name="start_date"/>
+                                            <field name="duration"/>
+                                            <field name="seats"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Cendera Mata">
+                                <field name="product_ids" nolabel="1"/>
+                            </page>
+                            <page string="Keterangan">
+                                <group>
+                                    <field name="description"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Membuat Action Course -->
+        <record id="training_course_action" model="ir.actions.act_window">
+            <field name="name">Course</field>
+            <field name="res_model">training.course</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p name="o_view_nocontent_smiling_face">
+                    Buatlah kursus pertamamu ...
+                </p>
+            </field>
+        </record>
+
+        <!--    &lt;!&ndash; Membuat Menu Dashboard &ndash;&gt;-->
+        <!--    <menuitem id="menu_dashboard_training" name="Training" />-->
+
+        <!--    &lt;!&ndash; Membuat Menu Bar Training &ndash;&gt;-->
+        <!--    <menuitem id="menu_bar_training" name="Training" parent="menu_dashboard_training"/>-->
+
+        <!--    &lt;!&ndash; Membuat Menu Item Course &ndash;&gt;-->
+        <!--    <menuitem id="menu_item_training_course" name="Course" parent="menu_bar_training" action="training_course_action"/>-->
+    </data>
 </odoo>
