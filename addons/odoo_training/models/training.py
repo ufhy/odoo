@@ -152,6 +152,14 @@ class TrainingSession(models.Model):
     def action_close(self):
         self.write({'state': 'done'})
 
+    def cron_expire_session(self):
+        now = fields.Date.now()
+        expired_ids = self.search([('end_date', '<', now), ('state', '=', 'open')])
+        expired_ids.write({'state': 'done'})
+
+    def action_print_session(self):
+        return self.env.ref('odoo_training.report_training_session_action').report_action(self)
+
 
 class TrainingAttendee(models.Model):
     _name = 'training.attendee'

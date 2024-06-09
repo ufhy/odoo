@@ -22,8 +22,12 @@ Long description of module's purpose
 
     # always loaded
     'data': [
+        'report/report_training_session.xml',
+        'report/report_action.xml',
         'data/data.xml',
         'data/sequence_data.xml',
+        'data/scheduler_data.xml',
+        'security/security.xml',
         'security/ir.model.access.csv',
         'views/training_views.xml',
         'views/training_attendee_views.xml',
