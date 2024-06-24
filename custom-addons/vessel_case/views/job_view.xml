@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+        <record id="vessel_job_action" model="ir.actions.act_window">
+            <field name="name">Equipment</field>
+            <field name="res_model">vessel.job</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p name="o_view_nocontent_smiling_face">
+                    No data available ...
+                </p>
+            </field>
+        </record>
+
+        <record id="vessel_job_view_tree" model="ir.ui.view">
+            <field name="name">vessel.job.tree</field>
+            <field name="model">vessel.job</field>
+            <field name="arch" type="xml">
+                <tree string="Job List">
+                    <field name="name"/>
+                    <field name="job_type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vessel_job_view_form" model="ir.ui.view">
+            <field name="name">vessel.job.form</field>
+            <field name="model">vessel.job</field>
+            <field name="arch" type="xml">
+                <form string="Equipment Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="job_type"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+        <record id="vessel_equipment_action" model="ir.actions.act_window">
+            <field name="name">Equipment</field>
+            <field name="res_model">vessel.equipment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p name="o_view_nocontent_smiling_face">
+                    No data available ...
+                </p>
+            </field>
+        </record>
+
+        <record id="vessel_equipment_view_tree" model="ir.ui.view">
+            <field name="name">vessel.equipment.tree</field>
+            <field name="model">vessel.equipment</field>
+            <field name="arch" type="xml">
+                <tree string="Equipment List">
+                    <field name="vessel_id"/>
+                    <field name="room_id"/>
+                    <field name="parent_id"/>
+                    <field name="name"/>
+                    <field name="brand"/>
+                    <field name="type"/>
+                    <field name="specification"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vessel_equipment_view_form" model="ir.ui.view">
+            <field name="name">vessel.equipment.form</field>
+            <field name="model">vessel.equipment</field>
+            <field name="arch" type="xml">
+                <form string="Equipment Form">
+                    <sheet>
+                        <group>
+                            <field name="vessel_id"/>
+                            <field name="room_id"/>
+                            <field name="parent_id"/>
+                            <field name="name"/>
+                            <field name="brand"/>
+                            <field name="type"/>
+                            <field name="specification"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+vessel_case_vessel,vessel_case_vessel,model_vessel_vessel,,1,1,1,1
+vessel_case_room,vessel_case_room,model_vessel_room,,1,1,1,1
+vessel_case_equipment,vessel_case_equipment,model_vessel_equipment,,1,1,1,1
+vessel_case_job,vessel_case_job,model_vessel_job,,1,1,1,1

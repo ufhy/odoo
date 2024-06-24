@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+        <record id="vessel_vessel_action" model="ir.actions.act_window">
+            <field name="name">Vessel</field>
+            <field name="res_model">vessel.vessel</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p name="o_view_nocontent_smiling_face">
+                    No vessel available ...
+                </p>
+            </field>
+        </record>
+
+        <record id="vesse_vessel_view_tree" model="ir.ui.view">
+            <field name="name">vessel.vessel.tree</field>
+            <field name="model">vessel.vessel</field>
+            <field name="arch" type="xml">
+                <tree string="Vessel List">
+                    <field name="name"/>
+                    <field name="vessel_type"/>
+                    <field name="call_sign" optional="hide" />
+                    <field name="imo_number" optional="hide" />
+                    <field name="mmssi_number"/>
+                    <field name="year_build"/>
+                    <field name="grt" optional="hide"/>
+                    <field name="dwt" optional="hide"/>
+                    <field name="loa" optional="hide"/>
+                    <field name="propeller_type"/>
+                    <field name="main_engine"/>
+                    <field name="aux_engine" optional="hide"/>
+                    <field name="aux_engine2" optional="hide"/>
+                    <field name="aux_engine3" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vesse_vessel_view_form" model="ir.ui.view">
+            <field name="name">vessel.vessel.form</field>
+            <field name="model">vessel.vessel</field>
+            <field name="arch" type="xml">
+                <form string="Vessel Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="vessel_type"/>
+                                <field name="call_sign"/>
+                                <field name="imo_number"/>
+                                <field name="mmssi_number"/>
+                                <field name="year_build"/>
+                                <field name="grt"/>
+                            </group>
+                            <group>
+                                <field name="dwt"/>
+                                <field name="loa"/>
+                                <field name="propeller_type"/>
+                                <field name="main_engine"/>
+                                <field name="aux_engine"/>
+                                <field name="aux_engine2"/>
+                                <field name="aux_engine3"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

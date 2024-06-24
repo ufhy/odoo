@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        <record id="vessel_room_action" model="ir.actions.act_window">
+            <field name="name">Room</field>
+            <field name="res_model">vessel.room</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p name="o_view_nocontent_smiling_face">
+                    No room available ...
+                </p>
+            </field>
+        </record>
+
+        <record id="vesse_room_view_tree" model="ir.ui.view">
+            <field name="name">vessel.room.tree</field>
+            <field name="model">vessel.room</field>
+            <field name="arch" type="xml">
+                <tree string="Room List">
+                    <field name="name"/>
+                    <field name="vessel_id"/>
+                    <field name="parent_room"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vesse_room_view_form" model="ir.ui.view">
+            <field name="name">vessel.room.form</field>
+            <field name="model">vessel.room</field>
+            <field name="arch" type="xml">
+                <form string="Room Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="vessel_id"/>
+                            <field name="parent_room"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

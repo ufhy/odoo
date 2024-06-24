@@ -1,0 +1,10 @@
+<odoo>
+    <!-- Menu Dashboard -->
+    <menuitem id="menu_dashboard_vessel" name="Vessel"
+              web_icon="vessel_case,static/description/icon.png"/>
+
+    <menuitem id="menu_bar_vessel_vessel" name="Vessel" parent="menu_dashboard_vessel" action="vessel_vessel_action"/>
+    <menuitem id="menu_bar_vessel_room" name="Rooms" parent="menu_dashboard_vessel" action="vessel_room_action"/>
+    <menuitem id="menu_bar_vessel_equipment" name="Equipments" parent="menu_dashboard_vessel" action="vessel_equipment_action"/>
+    <menuitem id="menu_bar_vessel_job" name="Jobs" parent="menu_dashboard_vessel" action="vessel_job_action"/>
+</odoo>
